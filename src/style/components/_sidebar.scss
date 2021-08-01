@@ -1,0 +1,53 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background-color: $color-background;
+  height: calc(100vh - #{$header-height});
+  box-shadow: $component-shadow;
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 1em;
+  width: 10em;
+  transition: all 300ms ease;
+  overflow: hidden;
+
+  li {
+    margin-bottom: 1em;
+    height: 2em;
+    width: 10em;
+  }
+
+  svg {
+    font-size: 2em;
+    color: $color-primary;
+  }
+
+  img {
+    width: 2em;
+  }
+
+  a {
+    text-decoration: none;
+    color: $font-color;
+    display: flex;
+    align-items: center;
+  }
+
+  span {
+    padding-left: 1em;
+  }
+
+  .horizontal-row {
+    border: 1px solid $color-primary;
+    width: 2em;
+    margin: 0 0 1em 0;
+    height: 0px;
+    opacity: 0.5;
+  }
+}
+
+.sidebar-closed {
+  width: 4em;
+}

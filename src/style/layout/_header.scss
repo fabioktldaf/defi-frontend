@@ -1,0 +1,31 @@
+.header {
+  width: 100vw;
+  height: $header-height;
+  background-color: $color-background;
+  box-shadow: $component-shadow;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-items: flex-start;
+
+  .logo {
+    max-height: 80%;
+  }
+
+  .website-name {
+    flex: 1;
+  }
+
+  .wallet {
+    justify-self: flex-end;
+    color: $font-color-inverse;
+    background-color: $color-primary;
+    margin-right: 2em;
+    padding: 0.2em 1em;
+    border-radius: 2em;
+    cursor: pointer;
+  }
+}
