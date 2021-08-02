@@ -1,0 +1,55 @@
+.animated-button {
+  cursor: pointer;
+  position: relative;
+
+  // TOGGLE MENU
+  .toggle-menu {
+    position: absolute;
+    right: 0;
+    top: 0.5em;
+    width: 2em;
+    height: 3px;
+    background-color: set-text-color($color-background);
+    @include transition-ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -0.3em;
+      width: 2em;
+      height: 3px;
+      background-color: set-text-color($color-background);
+      @include transition-ease;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0.3em;
+      width: 1.6em;
+      height: 3px;
+      background-color: set-text-color($color-background);
+      @include transition-ease;
+    }
+
+    // &.status-0 {
+
+    // }
+
+    &.status-1 {
+      transform: rotate(360deg);
+      background: transparent;
+
+      &::before {
+        transform: rotate(45deg) translate(5px, 8px);
+        top: -0.5em;
+      }
+
+      &::after {
+        width: 2em;
+        transform: rotate(-45deg) translate(3px, -7px);
+        top: 0.5em;
+      }
+    }
+  }
+}

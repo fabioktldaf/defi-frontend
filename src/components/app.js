@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Header from "../layout/header";
-import Sidebar from "../components/sidebar";
-import Home from "../pages/home";
-import Bsc from "../pages/chains/bsc";
-import Ethereum from "../pages/chains/ethereum";
-import Polygon from "../pages/chains/polygon";
+import { useDispatch } from "react-redux";
+import { loadChains, loadPlatforms } from "../utils/dataFetcher";
+import Header from "./header";
+import Sidebar from "./sidebar";
+
+import configData from "../configData";
 
 export default () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      const chains = await loadChains(dispatch);
+      await loadPlatforms(dispatch, chains[0].name);
+    })();
+  }, []);
 
   const handleToggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
     <Router>
-      <Header />
+      <Header chains={[]} isLoadingChains={false} />
       <Sidebar isOpen={sidebarOpen} onToggle={handleToggleSidebar} />
       <main>
         <Switch>
-          <Route path="/" exact={true} component={Home} />
-          <Route path="/bsc" component={Bsc} />
-          <Route path="/ethereum" component={Ethereum} />
-          <Route path="/polygon" component={Polygon} />
+          {configData.pages.map(({ href, exact = false, component }, index) => (
+            <Route path={href} exact={exact} component={component} key={index} />
+          ))}
         </Switch>
       </main>
     </Router>

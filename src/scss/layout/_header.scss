@@ -21,7 +21,7 @@
 
   .wallet {
     justify-self: flex-end;
-    color: $font-color-inverse;
+    color: set-text-color($color-primary);
     background-color: $color-primary;
     margin-right: 2em;
     padding: 0.2em 1em;

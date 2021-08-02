@@ -2,51 +2,28 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-import * as AiIcons from "react-icons/ai";
-import * as GrIcons from "react-icons/gr";
+import AnimatedButton from "./animatedButton";
+
+import configData from "../configData";
 
 export default ({ isOpen, onToggle }) => {
   return (
     <div className={classNames("sidebar", isOpen ? "" : "sidebar-closed")}>
       <nav>
         <ul>
-          <li>
-            <Link to="#" onClick={onToggle}>
-              {isOpen ? (
-                <>
-                  <AiIcons.AiOutlineMenuFold className="btn-toggle" />
-                  <span>Close</span>
-                </>
-              ) : (
-                <AiIcons.AiOutlineMenuUnfold className="btn-toggle" />
-              )}
-            </Link>
+          <li onClick={onToggle}>
+            <AnimatedButton className="sidebar-icon" icon="toggle-menu" status={!isOpen ? 0 : 1} />
+            {isOpen && <span>Close</span>}
           </li>
-          <li>
-            <Link to="/">
-              <AiIcons.AiOutlineHome />
-              {isOpen && <span>Home</span>}
-            </Link>
-          </li>
-          <li className="horizontal-row "></li>
-          <li>
-            <Link to="/bsc">
-              <img src="/images/bsc.png" alt="binance smart chain" />
-              {isOpen && <span>BSC</span>}
-            </Link>
-          </li>
-          <li>
-            <Link to="/ethereum">
-              <img src="/images/ethereum.png" alt="ethereum blockchain" />
-              {isOpen && <span>Ethereum</span>}
-            </Link>
-          </li>
-          <li>
-            <Link to="/polygon">
-              <img src="/images/polygon.png" alt="polygon blockchain" />
-              {isOpen && <span>Polygon</span>}
-            </Link>
-          </li>
+
+          {configData.pages.map(({ text, href, icon }, index) => (
+            <li key={index}>
+              <Link to={href}>
+                {icon}
+                {isOpen && <span>{text}</span>}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

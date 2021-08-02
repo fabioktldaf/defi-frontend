@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
 // COLORS
 
 $color-primary: #888da5;
@@ -8,12 +10,26 @@ $color-background: rgb(255, 255, 255);
 $font-color: rgb(50, 50, 50);
 $font-color-inverse: rgb(240, 240, 240);
 $font-family: Roboto, sans-serif;
-$icon-size: 2em;
-
-// LINKS
+$nav-icon-size: 2em;
 
 // LAYOUT
 $component-shadow: 0 0 5px rgb(153, 153, 153);
 $header-height: 4em;
 $sidebar-width-open: 20em;
 $sidebar-width-closed: 4em;
+
+// MIXINS
+
+@mixin transition-ease {
+  transition: all 0.5s ease-in-out;
+}
+
+// FUNCTIONS
+
+@function set-text-color($color) {
+  @if (lightness($color) > 60%) {
+    @return $font-color;
+  } @else {
+    @return $font-color-inverse;
+  }
+}
