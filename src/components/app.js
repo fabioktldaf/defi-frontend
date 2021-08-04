@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loadChains, loadPlatforms } from "../utils/dataFetcher";
+import { loadChains, loadPlatforms, loadTokens, loadAverages } from "../utils/dataFetcher";
 import Header from "./header";
 import Sidebar from "./sidebar";
 
@@ -16,6 +16,8 @@ export default () => {
     (async () => {
       const chains = await loadChains(dispatch);
       await loadPlatforms(dispatch, chains[0].name);
+      await loadTokens(dispatch, chains[0].name);
+      await loadAverages(dispatch, chains[0].name);
     })();
   }, []);
 

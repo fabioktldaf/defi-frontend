@@ -1,7 +1,7 @@
 import React from "react";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import { changeChain } from "../redux/chainSlice";
+import { changeChain } from "../redux/slices/chainSlice";
 
 import { loadPlatforms } from "../utils/dataFetcher";
 

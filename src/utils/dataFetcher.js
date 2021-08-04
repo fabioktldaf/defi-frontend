@@ -1,5 +1,8 @@
-import { loadChainsStart, loadChainsEnd, setChains } from "../redux/chainSlice";
-import { loadPlatformsStart, loadPlatformsEnd, setPlatforms } from "../redux/platformSlice";
+import { loadChainsStart, loadChainsEnd, setChains } from "../redux/slices/chainSlice";
+import { loadPlatformsStart, loadPlatformsEnd, setPlatforms } from "../redux/slices/platformSlice";
+import { loadTokensStart, loadTokensEnd, setTokens } from "../redux/slices/tokenSlice";
+import { loadAveragesStart, loadAveragesEnd, setAverages } from "../redux/slices/averagesSlice";
+
 import configData from "../configData";
 import { sleep } from "../utils/tools";
 
@@ -20,19 +23,36 @@ export const loadPlatforms = async (dispatch, chainName) => {
 
   const response = await fetch(configData.urls.platforms(chainName));
   const platforms = await response.json();
-  await sleep(1000); //////////////////////////////////////
+  await sleep(100); //////////////////////////////////////
   dispatch(setPlatforms({ chainName, platforms }));
   dispatch(loadPlatformsEnd());
 
   return platforms;
 };
 
-export const loadTokens = (chainName) => {
-  // to do...
+export const loadTokens = async (dispatch, chainName) => {
+  dispatch(loadTokensStart());
+
+  const response = await fetch(configData.urls.tokens(chainName));
+  const tokens = await response.json();
+  await sleep(100); //////////////////////////////////////
+  dispatch(setTokens({ chainName, tokens }));
+  dispatch(loadTokensEnd());
+};
+
+export const loadAverages = async (dispatch, chainName) => {
+  dispatch(loadAveragesStart());
+  const response = await fetch(configData.urls.averages(chainName));
+  const averages = await response.json();
+
+  await sleep(100); //////////////////////////////////////
+  dispatch(setAverages({ chainName, averages }));
+  dispatch(loadAveragesEnd);
 };
 
 export default {
   loadChains,
   loadPlatforms,
   loadTokens,
+  loadAverages,
 };

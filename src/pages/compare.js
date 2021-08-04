@@ -1,5 +1,6 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import TableCompare from "../components/tableCompare";
+import { AVERAGE_TYPE } from "../types";
 
 export default () => {
   const chainName = useSelector((state) => state.chains.selected);
@@ -7,18 +8,11 @@ export default () => {
   const platforms = useSelector((state) => state.platforms.platformsByChain[chainName]);
 
   return (
-    <div className="page">
-      {chainName}
+    <div className="page compare-page">
       {isLoadingPlatforms ? (
         <div>Loading...</div>
       ) : (
-        <ul>
-          {platforms &&
-            platforms.length > 0 &&
-            platforms.map(({ name, active, baseToken }, index) => (
-              <li key={index}>{`${name} ${baseToken} ${active}`}</li>
-            ))}
-        </ul>
+        <TableCompare averageType={AVERAGE_TYPE.hourly} />
       )}
     </div>
   );

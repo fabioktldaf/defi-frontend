@@ -1,9 +1,18 @@
 .page {
+  flex: 1;
+  padding: 2em;
+  overflow: hidden;
+  display: flex;
+}
+
+main {
   display: flex;
   width: 100vw;
   height: 100vh;
   padding-top: $header-height;
   padding-left: #{$sidebar-width-closed};
-  align-items: center;
-  justify-content: center;
+}
+
+.compare-page {
+  display: flex;
 }

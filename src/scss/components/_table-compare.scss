@@ -1,0 +1,105 @@
+.table-compare {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+
+  .controls {
+    box-shadow: $component-shadow;
+    padding: 1em;
+    border-radius: 0.2em;
+    margin-bottom: 2em;
+  }
+
+  .table-container {
+    overflow-x: auto;
+    box-shadow: $component-shadow;
+
+    table {
+      border-radius: 0.2em;
+
+      thead {
+        th {
+          border-bottom: 1px solid #aaa;
+
+          &.col-token {
+            min-width: 8em;
+            max-width: 8em;
+          }
+
+          &.col-rate {
+            min-width: 10em;
+            max-width: 10em;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            border: 1px solid #ccc;
+          }
+        }
+      }
+    }
+  }
+  .cell-token {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "symbol"
+      "price";
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      grid-area: logo;
+      margin-right: 0.2em;
+      width: 1.8em;
+      height: 1.8em;
+      justify-self: center;
+    }
+
+    .symbol {
+      grid-area: symbol;
+      font-weight: bold;
+      justify-self: center;
+    }
+
+    .price {
+      grid-area: price;
+      font-size: 0.8em;
+      text-align: center;
+    }
+  }
+
+  .cell-platform {
+    display: grid;
+    grid-template-areas:
+      "rate rate"
+      "logo name";
+    align-items: center;
+
+    .rate {
+      grid-area: rate;
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      justify-self: center;
+    }
+
+    .logo {
+      grid-area: logo;
+      justify-self: end;
+      margin-right: 0.2em;
+
+      width: 1em;
+      height: 1em;
+    }
+
+    .name {
+      grid-area: name;
+      font-size: 0.8em;
+    }
+  }
+}

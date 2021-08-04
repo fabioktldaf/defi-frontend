@@ -42,5 +42,7 @@ export default {
     chains: () => `${urlDataRepo}config/chains.json`,
     platforms: (chain) => `${urlDataRepo}config/${chain}/platforms.json`,
     tokens: (chain) => `${urlDataRepo}config/${chain}/tokens.json`,
+    averages: (chain) => `${urlDataRepo}historical-values/${chain}/averages.json`,
+    tokenImage: (tokenName) => `/images/tokens/${tokenName}.png`,
   },
 };
