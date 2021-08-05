@@ -14,7 +14,7 @@ export const averagesSlice = createSlice({
       state.loading = false;
     },
     setAverages: (state, action) => {
-      const { chainName, averages } = action.payload;
+      const { chainName, averages, lastUpdate } = action.payload;
       state.averagesByChain[chainName] = averages;
 
       console.log("chainName ", chainName);

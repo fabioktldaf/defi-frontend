@@ -62,7 +62,11 @@ const buildRowPlatforms = (tokenSymbol, averages, averageType, numberOfPlatforms
     orderedBorrowingRates = [...orderedBorrowingRates, ...emptyCells];
   }
 
-  return { lending: orderedLendingRates, borrowing: orderedBorrowingRates };
+  return {
+    lending: orderedLendingRates,
+    borrowing: orderedBorrowingRates,
+    lastPrice: averages[AVERAGE_TYPE.hourly.value].find((t) => t.symbol === tokenSymbol).lastPrice,
+  };
 };
 
 const buildTableData = (platforms, tokens, averages, averageType) => {
@@ -75,7 +79,7 @@ const buildTableData = (platforms, tokens, averages, averageType) => {
   };
 
   const rows = tokens.map((token) => {
-    const { lending, borrowing } = buildRowPlatforms(
+    const { lending, borrowing, lastPrice } = buildRowPlatforms(
       token.symbol,
       averages,
       averageType,
@@ -87,7 +91,7 @@ const buildTableData = (platforms, tokens, averages, averageType) => {
       symbol: token.symbol,
       image: configData.urls.tokenImage(token.symbol.toLowerCase()),
       address: token.address,
-      lastPrice: token.lastPrice,
+      lastPrice,
       lending,
       borrowing,
     };
@@ -217,6 +221,7 @@ export default () => {
   return (
     <div className="table-compare">
       <div className="controls">
+        {averages && <div>Last update was {averages.lastUpdate}</div>}
         <div>
           Filter by Tokens
           <TokensSelection
