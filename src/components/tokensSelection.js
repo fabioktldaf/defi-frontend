@@ -69,7 +69,7 @@ const tokensStyle = {
 };
 
 let __tokens;
-export default ({ tokens, isMulti = false, onChange }) => {
+export default ({ tokens, isMulti = false, onChange, defaultValue }) => {
   __tokens = tokens;
 
   return (
@@ -80,6 +80,7 @@ export default ({ tokens, isMulti = false, onChange }) => {
       closeMenuOnSelect={!isMulti}
       onChange={onChange}
       styles={tokensStyle}
+      defaultValue={defaultValue}
     />
   );
 };

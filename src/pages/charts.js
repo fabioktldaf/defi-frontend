@@ -1,36 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import TokenSelection from "../components/tokensSelection";
 import TokenCharts from "../components/tokenCharts";
 
 export default () => {
-  const chainName = useSelector((state) => state.chains.selected);
-  const platforms = useSelector((state) => state.platforms.platformsByChain[chainName]);
-  const isLoadingPlatforms = useSelector((state) => state.platforms.loading);
+  const { chainName, baseToken } = useSelector((state) => {
+    return {
+      chainName: state.chains.selected,
+      baseToken: state.chains.chains.find((c) => c.name === state.chains.selected)?.baseToken,
+    };
+  });
   const tokens = useSelector((state) => state.tokens.tokensByChain[chainName]);
   const isLoadingTokens = useSelector((state) => state.tokens.loading);
 
-  const [selectedToken, setSelectedToken] = useState(null);
+  const [selectedSymbol, setSelectedSymbol] = useState(null);
+
+  useEffect(() => {
+    if (tokens && tokens.length > 0) {
+      setSelectedSymbol(baseToken);
+    }
+  }, [tokens]);
 
   const renderCharts = () => {
-    if (!!tokens && tokens.length > 0) {
-      filterTokensValues = tokens.map((t) => ({ value: t.symbol, label: t.symbol }));
-    }
+    const filterTokensValues =
+      !tokens || tokens.length == 0
+        ? []
+        : tokens.map((t) => ({ value: t.symbol, label: t.symbol }));
+
+    const defaultToken = filterTokensValues.find((t) => t.value === baseToken);
 
     return (
       <>
-        <TokenSelection tokens={filterTokensValues} onChange={(t) => setSelectedToken(t.value)} />
+        {filterTokensValues && (
+          <TokenSelection
+            tokens={filterTokensValues}
+            onChange={(t) => setSelectedSymbol(t.value)}
+            defaultValue={defaultToken}
+          />
+        )}
 
-        <TokenCharts symbol={selectedToken} />
+        <TokenCharts symbol={selectedSymbol} />
       </>
     );
   };
 
-  let filterTokensValues = [];
-
   return (
     <div className="page charts-page">
-      {isLoadingPlatforms || isLoadingTokens ? <div>Loading ....</div> : renderCharts()}
+      {isLoadingTokens ? <div>Loading ....</div> : renderCharts()}
     </div>
   );
 };
