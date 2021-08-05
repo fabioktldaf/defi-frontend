@@ -1,6 +1,6 @@
 export const AVERAGE_TYPE = {
-  hourly: "hourly",
-  daily: "daily",
-  weekly: "weekly",
-  monthly: "monthly",
+  hourly: { value: "hourly", label: "Last Hour" },
+  daily: { value: "daily", label: "24 Hours" },
+  weekly: { value: "weekly", label: "7 Days" },
+  monthly: { value: "monthly", label: "30 Days" },
 };

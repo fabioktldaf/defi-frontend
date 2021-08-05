@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import TableCompare from "../components/tableCompare";
-import { AVERAGE_TYPE } from "../types";
 
 export default () => {
   const chainName = useSelector((state) => state.chains.selected);
@@ -9,11 +8,7 @@ export default () => {
 
   return (
     <div className="page compare-page">
-      {isLoadingPlatforms ? (
-        <div>Loading...</div>
-      ) : (
-        <TableCompare averageType={AVERAGE_TYPE.hourly} />
-      )}
+      {isLoadingPlatforms ? <div>Loading...</div> : <TableCompare />}
     </div>
   );
 };

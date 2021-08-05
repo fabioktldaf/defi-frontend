@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import configData from "../configData";
-import header from "./header";
+import { AVERAGE_TYPE } from "../types";
+import AverageTypeSelection from "./averageTypeSelection";
+import TokensSelection from "./tokensSelection";
 
 const buildRowPlatforms = (tokenSymbol, averages, averageType, numberOfPlatforms) => {
   if (!tokenSymbol || !averages || !averageType || !numberOfPlatforms)
@@ -94,13 +96,16 @@ const buildTableData = (platforms, tokens, averages, averageType) => {
   return { header, rows };
 };
 
-export default ({ averageType }) => {
+export default () => {
   const tableRef = useRef(null);
 
   const chainName = useSelector((state) => state.chains.selected);
   const platforms = useSelector((state) => state.platforms.platformsByChain[chainName]);
   const tokens = useSelector((state) => state.tokens.tokensByChain[chainName]);
   const averages = useSelector((state) => state.averages.averagesByChain[chainName]);
+
+  const [filterTokens, setFilterTokens] = useState([]);
+  const [averageType, setAverageType] = useState(AVERAGE_TYPE.hourly.value);
 
   const tableData = buildTableData(platforms, tokens, averages, averageType);
 
@@ -188,6 +193,11 @@ export default ({ averageType }) => {
   const renderRows = (rows) =>
     rows
       .filter((row) => row.lending && row.borrowing)
+      .filter((row) =>
+        !filterTokens || filterTokens?.length === 0
+          ? true
+          : filterTokens.find((ft) => ft.value === row.symbol)
+      )
       .map((row, index) => <tr key={index}>{renderRow(row)}</tr>);
 
   const renderTable = (tableData) =>
@@ -198,9 +208,28 @@ export default ({ averageType }) => {
       </table>
     );
 
+  let filterTokensValues = [];
+
+  if (!!tokens && tokens.length > 0) {
+    filterTokensValues = tokens.map((t) => ({ value: t.symbol, label: t.symbol }));
+  }
+
   return (
     <div className="table-compare">
-      <div className="controls"> Filters & Controls </div>
+      <div className="controls">
+        <div>
+          Filter by Tokens
+          <TokensSelection
+            tokens={filterTokensValues}
+            isMulti={true}
+            onChange={(values) => setFilterTokens(values)}
+          />
+        </div>
+        <div>
+          Average Rates Type
+          <AverageTypeSelection onChange={(average) => setAverageType(average.value)} />
+        </div>
+      </div>
       <div className="table-container">{renderTable(tableData)}</div>
     </div>
   );
