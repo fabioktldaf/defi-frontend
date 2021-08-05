@@ -5,6 +5,7 @@ import chainReducer from "./slices/chainSlice";
 import platformReducer from "./slices/platformSlice";
 import tokenReducer from "./slices/tokenSlice";
 import averagesReducer from "./slices/averagesSlice";
+import tokenHistoricalDataReducer from "./slices/tokenHistoricalDataSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     platforms: platformReducer,
     tokens: tokenReducer,
     averages: averagesReducer,
+    tokenHistoricalData: tokenHistoricalDataReducer,
   },
 });
 

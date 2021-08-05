@@ -22,8 +22,7 @@ const chainStyle = (selectedChain) => ({
       },
     };
   },
-  input: (styles, { data }) => {
-    const image = data?.value;
+  input: (styles) => {
     return {
       ...styles,
       ":before": {

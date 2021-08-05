@@ -18,9 +18,21 @@ const tokensStyle = {
       },
     };
   },
-  input: (styles, { data }) => {
+  input: (styles, state) => {
+    const selectedTokens = state.getValue();
+    const symbol = selectedTokens && selectedTokens.length > 0 ? selectedTokens[0].value : null;
+    const background = symbol ? `url('/images/tokens/${symbol.toLowerCase()}.png')` : "";
+
     return {
       ...styles,
+      ":before": {
+        content: `''`,
+        display: "inline-block",
+        background,
+        backgroundSize: "cover",
+        width: "2em",
+        height: "2em",
+      },
     };
   },
   singleValue: (styles) => ({
@@ -56,7 +68,10 @@ const tokensStyle = {
   }),
 };
 
-export default ({ tokens, isMulti, onChange }) => {
+let __tokens;
+export default ({ tokens, isMulti = false, onChange }) => {
+  __tokens = tokens;
+
   return (
     <Select
       className="tokens-selection"

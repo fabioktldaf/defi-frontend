@@ -2,6 +2,11 @@ import { loadChainsStart, loadChainsEnd, setChains } from "../redux/slices/chain
 import { loadPlatformsStart, loadPlatformsEnd, setPlatforms } from "../redux/slices/platformSlice";
 import { loadTokensStart, loadTokensEnd, setTokens } from "../redux/slices/tokenSlice";
 import { loadAveragesStart, loadAveragesEnd, setAverages } from "../redux/slices/averagesSlice";
+import {
+  loadTokenHistoricalDataStart,
+  loadTokenHistoricalEnd,
+  setHistoricalData,
+} from "../redux/slices/tokenHistoricalDataSlice";
 
 import configData from "../configData";
 import { sleep } from "../utils/tools";
@@ -50,9 +55,21 @@ export const loadAverages = async (dispatch, chainName) => {
   dispatch(loadAveragesEnd);
 };
 
+export const loadTokenHistoricalData = async (dispatch, chainName, symbol) => {
+  dispatch(loadTokenHistoricalDataStart());
+  const response = await fetch(configData.urls.tokenHistoricalData(chainName, symbol));
+  const historicalData = await response.json();
+
+  await sleep(100);
+  dispatch(setHistoricalData({ chainName, symbol, historicalData }));
+
+  dispatch(loadTokenHistoricalEnd());
+};
+
 export default {
   loadChains,
   loadPlatforms,
   loadTokens,
   loadAverages,
+  loadTokenHistoricalData,
 };

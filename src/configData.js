@@ -43,6 +43,8 @@ export default {
     platforms: (chain) => `${urlDataRepo}config/${chain}/platforms.json`,
     tokens: (chain) => `${urlDataRepo}config/${chain}/tokens.json`,
     averages: (chain) => `${urlDataRepo}historical-values/${chain}/averages.json`,
+    tokenHistoricalData: (chain, symbol) =>
+      `${urlDataRepo}historical-values/${chain}/${symbol}.json`,
     tokenImage: (tokenName) => `/images/tokens/${tokenName}.png`,
   },
 };

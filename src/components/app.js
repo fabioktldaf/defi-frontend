@@ -15,9 +15,9 @@ export default () => {
   useEffect(() => {
     (async () => {
       const chains = await loadChains(dispatch);
-      await loadPlatforms(dispatch, chains[0].name);
-      await loadTokens(dispatch, chains[0].name);
-      await loadAverages(dispatch, chains[0].name);
+      loadPlatforms(dispatch, chains[0].name);
+      loadTokens(dispatch, chains[0].name);
+      loadAverages(dispatch, chains[0].name);
     })();
   }, []);
 
