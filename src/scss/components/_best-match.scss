@@ -1,0 +1,38 @@
+.pair-tokens-selection {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  .token-selection {
+    width: 30vw;
+  }
+
+  .and-separator {
+    font-size: 2em;
+    color: #aaa;
+    padding: 1em 1em 0 1em;
+  }
+}
+
+.result {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin-top: 5em;
+  padding: 1em;
+  box-shadow: $component-shadow;
+  border-radius: 0.2em;
+
+  table {
+    th {
+      padding: 0.2em 1em;
+    }
+
+    tr {
+      td {
+        padding: 0.2em 0.5em;
+        text-align: center;
+      }
+    }
+  }
+}
