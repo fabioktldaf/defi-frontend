@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.2e320b7b.chunk.css",
-    "main.js": "/static/js/main.6cdef41f.chunk.js",
-    "main.js.map": "/static/js/main.6cdef41f.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.bc85472e.js",
-    "runtime-main.js.map": "/static/js/runtime-main.bc85472e.js.map",
-    "static/css/2.6372f70d.chunk.css": "/static/css/2.6372f70d.chunk.css",
-    "static/js/2.d6273e90.chunk.js": "/static/js/2.d6273e90.chunk.js",
-    "static/js/2.d6273e90.chunk.js.map": "/static/js/2.d6273e90.chunk.js.map",
-    "static/js/3.8080513f.chunk.js": "/static/js/3.8080513f.chunk.js",
-    "static/js/3.8080513f.chunk.js.map": "/static/js/3.8080513f.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.6372f70d.chunk.css.map": "/static/css/2.6372f70d.chunk.css.map",
-    "static/css/main.2e320b7b.chunk.css.map": "/static/css/main.2e320b7b.chunk.css.map",
-    "static/js/2.d6273e90.chunk.js.LICENSE.txt": "/static/js/2.d6273e90.chunk.js.LICENSE.txt"
+    "main.css": "/defi-frontend/static/css/main.2e320b7b.chunk.css",
+    "main.js": "/defi-frontend/static/js/main.6cdef41f.chunk.js",
+    "main.js.map": "/defi-frontend/static/js/main.6cdef41f.chunk.js.map",
+    "runtime-main.js": "/defi-frontend/static/js/runtime-main.72b6b57a.js",
+    "runtime-main.js.map": "/defi-frontend/static/js/runtime-main.72b6b57a.js.map",
+    "static/css/2.6372f70d.chunk.css": "/defi-frontend/static/css/2.6372f70d.chunk.css",
+    "static/js/2.1e7fdd90.chunk.js": "/defi-frontend/static/js/2.1e7fdd90.chunk.js",
+    "static/js/2.1e7fdd90.chunk.js.map": "/defi-frontend/static/js/2.1e7fdd90.chunk.js.map",
+    "static/js/3.8080513f.chunk.js": "/defi-frontend/static/js/3.8080513f.chunk.js",
+    "static/js/3.8080513f.chunk.js.map": "/defi-frontend/static/js/3.8080513f.chunk.js.map",
+    "index.html": "/defi-frontend/index.html",
+    "static/css/2.6372f70d.chunk.css.map": "/defi-frontend/static/css/2.6372f70d.chunk.css.map",
+    "static/css/main.2e320b7b.chunk.css.map": "/defi-frontend/static/css/main.2e320b7b.chunk.css.map",
+    "static/js/2.1e7fdd90.chunk.js.LICENSE.txt": "/defi-frontend/static/js/2.1e7fdd90.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.bc85472e.js",
+    "static/js/runtime-main.72b6b57a.js",
     "static/css/2.6372f70d.chunk.css",
-    "static/js/2.d6273e90.chunk.js",
+    "static/js/2.1e7fdd90.chunk.js",
     "static/css/main.2e320b7b.chunk.css",
     "static/js/main.6cdef41f.chunk.js"
   ]
